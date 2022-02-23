@@ -1,64 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Projetos:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1° Clonar o projetos SimuladorBackEnd
 
-## About Laravel
+2° Clonar o projetos SimuladorFrontEnd
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+3° Instalar o composer na maquina ou container que for rodar os projetos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+4° Entrar na raiz de cada projeto e executar ( composer install )
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+6° Criar o banco  de dados Postgre
 
-## Learning Laravel
+CREATE DATABASE TradeTechnology;
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+7°  Criar o Usuário do Banco
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+CREATE USER 'tradetechnology' WITH PASSWORD 'TradeTechnology';
 
-## Laravel Sponsors
+8° Atribuir Permissões ao Usuário para Super usuario
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+ALTER USER tradetechnology WITH SUPERUSER;
 
-### Premium Partners
+9° no arquivo .env do projeto SimuladorBackEnd, adicionar as informações de conexão
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+10° Na raiz do projeto SimuladorBackEnd, executar os comandos
 
-## Contributing
+        php artisan schema:create
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+        php artisan migrate
 
-## Code of Conduct
+        php artisan passport:client --password
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+        ##### após o comando ele irá pedir um nome para o client, pode ser qualquer um ou ( SimuladorFrontEnd )
 
-## Security Vulnerabilities
+        #### após a primeira pergunta, ele irá pedir um usuário, não precisa por nenhum, somente enter
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+11° Após o passo 10, ele gerará um ID e uma chame, copie e cole no aquivo .env do projeto ( SimuladorFrontEnd )
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+            API_WEBSERVICE_CLIENT_ID = "1"
+            API_WEBSERVICE_CLIENT_SECRET = "C6UxbZ7VWmdtH7ptudN4wjGGXip8l9RQL7lCngcy"
+
+
+12° No arquivo .env do projeto ( SimuladorFrontEnd ), adicionar a variavel, API_WEBSERVICE_URL com o endereço apontando para o endpoint do porjeto ( SimuladorFrontEnd )
+
+            API_WEBSERVICE_URL = "https://api.simulador-de-jogos.com.br/api"
+
+13° Acessar o projeto ( SimuladorFrontEnd ) via navegador e logar
+
+       ## O Login e Senha ja vai estar fixo no html
+
+
+14° O arquivo de Collection está na raiz do projeto ( SimuladorBackEnd )

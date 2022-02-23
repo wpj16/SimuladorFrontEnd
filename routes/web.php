@@ -33,7 +33,7 @@ Route::middleware(['web'])->prefix('/')->group(function () {
             //
             Route::post('/campeonato/', [ContaController::class, 'cadastrarCampeonato'])->name('minha.conta.cadastrar.campeonato.post');
             //
-            Route::post('/jogadores/', [ContaController::class, 'cadastrarJogadores'])->name('minha.conta.cadastrar.jogadores.post');
+            Route::post('/jogadores/', [ContaController::class, 'cadastrarJogador'])->name('minha.conta.cadastrar.jogador.post');
             //
             //
         });

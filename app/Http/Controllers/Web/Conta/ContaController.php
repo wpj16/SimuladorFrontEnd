@@ -26,7 +26,7 @@ class ContaController extends Controller
         parent::http()
             ->get('/minha-conta/meus-campeonatos/')
             ->error(function ($response) use ($request) {
-                return parent::return()
+                return parent::view('campeonatos-simulados', ['campeonatos' => []])
                     ->request($request)
                     ->code(303)
                     ->message($response->message(), true)
@@ -42,7 +42,7 @@ class ContaController extends Controller
         parent::http()
             ->get('/minha-conta/listar/times/')
             ->error(function ($response) use ($request) {
-                return parent::return()
+                return parent::view('cadastrar-times', ['times' => []])
                     ->request($request)
                     ->code(303)
                     ->message($response->message(), true)
@@ -58,8 +58,7 @@ class ContaController extends Controller
         parent::http()
             ->get('/minha-conta/meus-campeonatos/')
             ->error(function ($response) use ($request) {
-                return parent::return()
-                    ->request($request)
+                return parent::view('cadastrar-campeonatos', ['campeonatos' => []])
                     ->code(303)
                     ->message($response->message(), true)
                     ->send();
@@ -71,7 +70,18 @@ class ContaController extends Controller
 
     public function viewCadastrarJogador(Request $request)
     {
-        return parent::view('cadastrar-jogadores')->send();
+        parent::http()
+            ->get('/minha-conta/listar/jogadores/')
+            ->error(function ($response) use ($request) {
+                return parent::view('cadastrar-jogadores', ['jogadores' => []])
+                    ->request($request)
+                    ->code(303)
+                    ->message($response->message(), true)
+                    ->send();
+            })->success(function ($response) {
+                $data =  $response->data();
+                return parent::view('cadastrar-jogadores', ['jogadores' => $data])->send();
+            });
     }
 
     public function cadastrarTime(Request $request)
@@ -163,7 +173,7 @@ class ContaController extends Controller
                 'nome' => 'Nome',
                 'email' => 'E-mail',
                 'documento' => 'Cpf',
-                'data_nascimento' => 'Data Nascimentt',
+                'data_nascimento' => 'Data Nascimento',
                 'numero_camisa' => 'N° Camisa'
             ])
             ->error(function ($errors) use ($request) {

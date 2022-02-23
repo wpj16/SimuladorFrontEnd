@@ -16,37 +16,36 @@
                             </div>
                         </div>
                         <div class="card-body p-4">
-                            <form class="row" action="{{ route('minha.conta.cadastrar.campeonato.post') }}"
-                                method="POST">
+                            <form class="row" action="{{ route('minha.conta.cadastrar.jogador.post') }}" method="POST">
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">Nome</label>
-                                    <input type="text" class="form-control" id="time" name="time"
-                                        placeholder="Nome Jogador">
+                                    <input type="text" class="form-control" id="nome" name="nome"
+                                        value="{{ old('nome') }}" placeholder="Nome Jogador">
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">E-mail</label>
-                                    <input type="text" class="form-control" id="time" name="time"
-                                        placeholder="Campenato">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        value="{{ old('email') }}" placeholder="Campenato">
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">Documento</label>
-                                    <input type="text" class="form-control" id="time" name="time"
-                                        placeholder="Campenato">
+                                    <input type="text" class="form-control" id="documento" name="documento"
+                                        value="{{ old('documento') }}" placeholder="Documento">
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">Data nascimento</label>
-                                    <input type="text" class="form-control" id="time" name="time"
-                                        placeholder="Campenato">
+                                    <input type="text" class="form-control" id="data_nascimento" name="data_nascimento"
+                                        value="{{ old('data_nascimento') }}" placeholder="Campenato">
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">N° Camisa</label>
-                                    <input type="text" class="form-control" id="time" name="time"
-                                        placeholder="Campenato">
+                                    <input type="text" class="form-control" id="numero_camisa" name="numero_camisa"
+                                        value="{{ old('numero_camisa') }}" placeholder="N° Camisa">
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">Time</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="time" id="time" value="{{ old('time') }}">
                                         <option>Selecione</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -62,30 +61,29 @@
                     </div>
                 </div>
             </div>
-            @if (empty($campeonatos))
+            @if (empty($jogadores))
             <div class="row">
                 <div class="col-12">
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Não há campeonatos simulados</h6>
+                                <h6 class="text-white text-capitalize ps-3">Jogadores Cadastrados</h6>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2 d-flex justify-content-center">
-                            <h5>Nenhuma simulação encontrada</h5>
+                            <h5>Nenhuma jogador cadastrado</h5>
                         </div>
                     </div>
                 </div>
             </div>
             @else
             <div class="row">
-                @foreach ($campeonatos as $campeonato)
                 <div class="col-12">
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3">
-                                    {{ $campeonato['nome'] ?? 'Sem nome cadastrado' }}
+                                    <h6 class="text-white text-capitalize ps-3">Jogadores Cadastrados</h6>
                                 </h6>
                             </div>
                         </div>
@@ -96,59 +94,40 @@
                                         <tr>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Time A</th>
+                                                ID</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Jogador</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Resultado</th>
+                                                Camisa</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Time B</th>
-
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Campeão</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                                                Tipo Jogo</th>
+                                                Data Cadastro</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (($campeonato['sorteios'] ?? []) as $jogos)
+                                        @foreach ($jogadores as $jogador)
                                         <tr>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    {{ $jogos['time_a']['nome'] ?? 'Nome não cadastrado' }}
+                                                    {{ $jogador['id'] ?? 'ID não cadastrado' }}
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    {{ $jogos['gols_time_a'] }} X {{ $jogos['gols_time_b'] }}
+                                                    {{ $jogador['nome'] ?? 'Nome não cadastrado' }}
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    {{ $jogos['time_b']['nome'] ?? 'Nome não cadastrado' }}
+                                                    {{ $jogador['numero'] ?? 'Numero da camisa não cadastrado' }}
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    {{ (($jogos['time_a']['id'] ?? null) == ($jogos['time_ganhador'] ?? false))? $jogos['time_a']['nome'] : $jogos['time_b']['nome']}}
+                                                    {{ $jogador['data_criacao'] ?? 'Data criação não cadastrada' }}
                                                 </p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                @switch($jogos['etapa'])
-                                                @case(0)
-                                                Terceiro Lugar
-                                                @case(1)
-                                                Final
-                                                @break
-                                                @case(2)
-                                                Semi Final
-                                                @break
-                                                @case(3)
-                                                Quartas de Final
-                                                @break
-                                                @endswitch
                                             </td>
                                         </tr>
                                         @endforeach
@@ -158,7 +137,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
             @endif
         </div>

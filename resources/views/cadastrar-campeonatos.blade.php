@@ -21,16 +21,22 @@
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
                                     <label for="staticEmail2" class="visually-hidden">Nome Campenato</label>
-                                    <input type="text" class="form-control" id="time" name="time"
-                                        placeholder="Campenato">
+                                    <input type="text" class="form-control" id="campeonato" name="campeonato"
+                                        value="{{ old('campeonato') }}" placeholder="Campenato">
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 p-2">
-                                    <label for="staticEmail2" class="visually-hidden">Times Participantes</label>
-                                    <select class="form-control">
+                                    <label for="staticEmail2" class="visually-hidden">Times
+                                        Participantes</label>
+                                    <select class="form-control" id="times" name="times[]" multiple>
                                         <option>Selecione</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
+                                        <option value="4">One</option>
+                                        <option value="5">Two</option>
+                                        <option value="6">Three</option>
+                                        <option value="7">One</option>
+                                        <option value="8">Two</option>
                                     </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 p-2 d-flex justify-content-center">
