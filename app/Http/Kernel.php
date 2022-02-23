@@ -44,6 +44,10 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'session_cliente' => [
+            \App\Http\Middleware\SessionCliente::class,
+        ],
     ];
 
     /**
